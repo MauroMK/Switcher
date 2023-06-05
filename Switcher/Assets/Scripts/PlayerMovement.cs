@@ -16,32 +16,54 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     private Rigidbody2D playerRb;
-    private Animator playerAnim;
+    private Animator anim;
 
 
     void Start()
     {
         playerMovementInput = GetComponent<PlayerInput>();
-        playerAnim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
     }
 
-    
-    void Update()
+    private void FixedUpdate() 
     {
-        
+        OnMove();
     }
+
 
     void OnMove()
     {
         //TODO put into FixedUpdate
         horizontal = playerMovementInput.actions[moveAction].ReadValue<Vector2>().x;
 
-        playerRb.velocity = new Vector2(horizontal * speed, 0f);
+        playerRb.velocity = new Vector2(horizontal * speed, playerRb.velocity.y);
+
+        if (horizontal > 0f)
+        {
+            anim.SetBool("Run", true);
+            transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        }
+
+        if (horizontal < 0f)
+        {
+            anim.SetBool("Run", true);
+            transform.eulerAngles = new Vector3(0f, 180f, 0f);
+        }
+
+        if (horizontal == 0f)
+        {
+            anim.SetBool("Run", false);
+        }
     }
 
-    void OnJump()
+    public void OnJump()
     {
+        bool jump = playerMovementInput.actions[jumpAction].WasPressedThisFrame();
 
+        if (jump)
+        {
+            playerRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
     }
 }
