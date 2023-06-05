@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRb;
     private Animator anim;
 
+    private bool isJumping;
+
 
     void Start()
     {
@@ -63,7 +65,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (jump)
         {
-            playerRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            if (!isJumping)
+            {
+                playerRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                anim.SetBool("Jump", true);
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if (other.gameObject.layer == 6)
+        {
+            isJumping = false;
+            anim.SetBool("Jump", false);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other) 
+    {
+        if (other.gameObject.layer == 6)
+        {
+            isJumping = true;
         }
     }
 }
