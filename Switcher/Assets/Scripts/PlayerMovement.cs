@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpForce = 5;
 
     #region InputManager
     private PlayerInput playerMovementInput;
@@ -19,13 +19,31 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
 
     private bool isJumping;
+    private bool isUpsideDown;
 
+    private enum GravityState {NormalGravity, InverseGravity}
+    private GravityState gravityState;
+
+    void Awake() 
+    {
+        gravityState = GravityState.NormalGravity;
+    }
 
     void Start()
     {
         playerMovementInput = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
+        isUpsideDown = false;
+    }
+
+    private void Update() 
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            isUpsideDown = !isUpsideDown;
+            UpdateGravity();
+        }
     }
 
     private void FixedUpdate() 
@@ -44,13 +62,13 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal > 0f)
         {
             anim.SetBool("Run", true);
-            transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            transform.eulerAngles = new Vector2(0f, 0f);
         }
 
         if (horizontal < 0f)
         {
             anim.SetBool("Run", true);
-            transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            transform.eulerAngles = new Vector2(0f, 180f);
         }
 
         if (horizontal == 0f)
@@ -87,6 +105,22 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             isJumping = true;
+        }
+    }
+
+    private void UpdateGravity()
+    {
+        if (isUpsideDown)
+        {
+            playerRb.gravityScale = -1f;
+            jumpForce = -5f;
+            transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        else
+        {
+            playerRb.gravityScale = 1f;
+            jumpForce = 5f;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
     }
 }
