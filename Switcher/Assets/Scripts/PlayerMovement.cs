@@ -17,24 +17,21 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D playerRb;
     private Animator anim;
+    private SpriteRenderer spriteRenderer;
+    private BoxCollider2D boxCollider;
 
     private bool isJumping;
     private bool isUpsideDown;
-
-    private enum GravityState {NormalGravity, InverseGravity}
-    private GravityState gravityState;
-
-    void Awake() 
-    {
-        gravityState = GravityState.NormalGravity;
-    }
 
     void Start()
     {
         playerMovementInput = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
         isUpsideDown = false;
+        //spriteRenderer.flipX = false;
     }
 
     private void Update() 
@@ -62,13 +59,13 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal > 0f)
         {
             anim.SetBool("Run", true);
-            transform.eulerAngles = new Vector2(0f, 0f);
+            spriteRenderer.flipX = false;
         }
 
         if (horizontal < 0f)
         {
             anim.SetBool("Run", true);
-            transform.eulerAngles = new Vector2(0f, 180f);
+            spriteRenderer.flipX = true;
         }
 
         if (horizontal == 0f)
@@ -112,15 +109,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isUpsideDown)
         {
-            playerRb.gravityScale = -1f;
+            playerRb.gravityScale = -4f;
             jumpForce = -5f;
-            transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            spriteRenderer.flipY = true;
+            boxCollider.offset = new Vector2(0, 0.55f);
         }
         else
         {
-            playerRb.gravityScale = 1f;
+            playerRb.gravityScale = 4f;
             jumpForce = 5f;
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            spriteRenderer.flipY = false;
+            boxCollider.offset = new Vector2(0, -0.55f);
         }
     }
 }
