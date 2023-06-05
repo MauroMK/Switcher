@@ -83,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
             if (!isJumping)
             {
                 playerRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-                anim.SetBool("Jump", true);
             }
         }
     }
@@ -102,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             isJumping = true;
+            anim.SetBool("Jump", true);
         }
     }
 
