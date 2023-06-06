@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         isUpsideDown = false;
-        //spriteRenderer.flipX = false;
     }
 
     private void Update() 
@@ -39,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             isUpsideDown = !isUpsideDown;
+            AudioManager.instance.PlaySound("GravitySwitch");
             UpdateGravity();
         }
     }
