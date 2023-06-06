@@ -8,9 +8,6 @@ public class Collidable : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.gameObject.CompareTag(playerTag))
-        {
-            // Show game over
-        }    
+        // Do something 
     }
 }

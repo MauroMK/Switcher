@@ -22,6 +22,14 @@ public class FallingPlatform : Collidable
         }
     }
 
+    protected override void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.layer == 8)
+        {
+            Destroy(gameObject);
+        }    
+    }
+
     void Fall()
     {
         targetJ.enabled = false;
