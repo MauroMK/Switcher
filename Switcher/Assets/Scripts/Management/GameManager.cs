@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public GameObject pauseMenu;
+
+    private bool isPaused = false;
+
     private void Awake() 
     {
         #region Singleton
@@ -22,6 +26,21 @@ public class GameManager : MonoBehaviour
         #endregion
 
         DontDestroyOnLoad(gameObject);  
+    }
+
+    private void Update() 
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
     }
 
     public void RestartGame()
@@ -42,5 +61,19 @@ public class GameManager : MonoBehaviour
 
         // Carrega a próxima cena
         SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
