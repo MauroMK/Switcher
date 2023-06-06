@@ -15,10 +15,12 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     #endregion
 
+    #region References
     private Rigidbody2D playerRb;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
+    #endregion
 
     private bool isJumping;
     private bool isUpsideDown;
@@ -123,4 +125,6 @@ public class PlayerMovement : MonoBehaviour
             boxCollider.offset = new Vector2(0, -0.55f);
         }
     }
+
+
 }

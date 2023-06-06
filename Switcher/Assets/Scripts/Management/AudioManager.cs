@@ -46,4 +46,15 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Play();
     }
+
+    public void StopSound(string soundName) 
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == soundName);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound " + soundName + " not found!");
+            return;
+        }
+        s.source.Stop();
+    }
 }
