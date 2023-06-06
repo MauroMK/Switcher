@@ -1485,6 +1485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   jumpForce: 5
+  isUpsideDown: 1
 --- !u!114 &1380572236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2263,6 +2264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2051602e4d9f08943a0edad64d51eec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
 --- !u!4 &1913982636
 Transform:
   m_ObjectHideFlags: 0

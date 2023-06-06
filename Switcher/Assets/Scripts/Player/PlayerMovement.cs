@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping;
     private bool isUpsideDown;
+    private string yellowButtonTag = "YellowButton";
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             isUpsideDown = !isUpsideDown;
-            AudioManager.instance.PlaySound("GravitySwitch");
+            
             UpdateGravity();
         }
     }
@@ -108,7 +109,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void UpdateGravity()
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag(yellowButtonTag))
+        {
+            isUpsideDown = !isUpsideDown;
+            AudioManager.instance.PlaySound("GravitySwitch");
+            UpdateGravity();
+        }
+    }
+
+    public void UpdateGravity()
     {
         if (isUpsideDown)
         {

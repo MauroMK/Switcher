@@ -10,8 +10,6 @@ public class BlueButton : Collidable
     private void Start() 
     {
         boxColl = GetComponent<BoxCollider2D>();
-
-        
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)

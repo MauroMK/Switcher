@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YellowButton : MonoBehaviour
+public class YellowButton : Collidable
 {
-    // Start is called before the first frame update
-    void Start()
+    private BoxCollider2D boxColl;
+
+    private void Start() 
     {
-        
+        boxColl = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.gameObject.CompareTag(playerTag))
+        {
+            boxColl.enabled = false;
+        }
     }
 }
