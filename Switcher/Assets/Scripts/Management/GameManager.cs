@@ -26,6 +26,21 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        AudioManager.instance.PlaySound("Death");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadSpecificScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadNextScene()
+    {
+        // Obtém o índice da cena atual
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Carrega a próxima cena
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 }
