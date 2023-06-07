@@ -36,16 +36,6 @@ public class PlayerMovement : MonoBehaviour
         isUpsideDown = false;
     }
 
-    private void Update() 
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            isUpsideDown = !isUpsideDown;
-            
-            UpdateGravity();
-        }
-    }
-
     private void FixedUpdate() 
     {
         OnMove();
@@ -86,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
             if (!isJumping)
             {
                 AudioManager.instance.PlaySound("Jump");
+
                 playerRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             }
         }
