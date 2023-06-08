@@ -8,6 +8,7 @@ public class Checkpoint : Collidable
     {
         if (other.gameObject.CompareTag(playerTag))
         {
+            AudioManager.instance.PlaySound("Checkpoint");
             GameManager.instance.LoadNextScene();
         }
     }
