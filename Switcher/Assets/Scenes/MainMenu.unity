@@ -1089,6 +1089,12 @@ MonoBehaviour:
     pitch: 0.71
     loop: 1
     source: {fileID: 0}
+  - name: Trampoline
+    audioClip: {fileID: 8300000, guid: 9aab64c27c3536148a53100895ff79fe, type: 3}
+    volume: 0.607
+    pitch: 0.63
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &975463157
 Transform:
   m_ObjectHideFlags: 0

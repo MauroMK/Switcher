@@ -18,6 +18,7 @@ public class Trampoline : Collidable
         if(collision.gameObject.CompareTag(playerTag))
         {
             anim.SetTrigger("jump");
+            AudioManager.instance.PlaySound("Trampoline");
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
