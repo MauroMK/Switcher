@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -461,7 +461,7 @@ TextureImporter:
         width: 70
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -469,6 +469,48 @@ TextureImporter:
       bones: []
       spriteID: 7900191a0ca6e1b4d9e89b91f64eeb3e
       internalID: 1568314661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Box_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ffacbbd87e8c4a46ae05e0610705a7b
+      internalID: -662028160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Box_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dbaf7e71a633f541ac93a3aa09ec058
+      internalID: -1558436137
       vertices: []
       indices: 
       edges: []
@@ -485,6 +527,8 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       AlertGround: 1568314661
+      Box_0: -662028160
+      Box_1: -1558436137
       Light_0: -345755970
       Light_1: 1745630808
       Light_3: -1694128180

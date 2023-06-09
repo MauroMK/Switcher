@@ -1085,8 +1085,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Music
     audioClip: {fileID: 8300000, guid: 559c232a43caebe41870ce54786f604e, type: 3}
-    volume: 0.321
-    pitch: 0.8
+    volume: 0.085
+    pitch: 0.71
     loop: 1
     source: {fileID: 0}
 --- !u!4 &975463157
