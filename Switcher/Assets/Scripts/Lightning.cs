@@ -9,7 +9,7 @@ public class Lightning : Collidable
     private BoxCollider2D boxColl;
     private SpriteRenderer spriteRenderer;
 
-    private bool ativo = true;
+    private bool active = true;
     [SerializeField] private float coolDown;
 
     private void Start()
@@ -22,7 +22,7 @@ public class Lightning : Collidable
 
     private void Update()
     {
-        if (ativo)
+        if (active)
         {
             boxColl.isTrigger = false;
             spriteRenderer.enabled = true;
@@ -46,12 +46,30 @@ public class Lightning : Collidable
 
     private void AlternarAtivacao()
     {
-        ativo = !ativo;
+        active = !active;
+
+        // Verificar se o jogador está dentro do raio elétrico
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, boxColl.size, 0);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.gameObject.CompareTag(playerTag))
+            {
+                GameManager.instance.RestartGame();
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag(playerTag) && active)
+        {
+            GameManager.instance.RestartGame();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag(playerTag))
+        if (other.gameObject.CompareTag(playerTag) && active)
         {
             GameManager.instance.RestartGame();
         }
