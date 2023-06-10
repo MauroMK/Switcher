@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    public float overallVolume = 0.4f;
+
     private void Awake() 
     {
         #region Singleton
@@ -30,7 +32,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.audioClip;
 
-            s.source.volume = s.volume;
+            s.source.volume = s.volume * overallVolume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
@@ -38,7 +40,21 @@ public class AudioManager : MonoBehaviour
 
     private void Start() 
     {
+        UpdateOverallVolume(overallVolume);
         PlaySound("Music");    
+    }
+
+    public void UpdateOverallVolume(float value)
+    {
+        overallVolume = value;
+
+        foreach (Sound s in sounds)
+        {
+            if (s.source != null)
+            {
+                s.source.volume = s.volume * overallVolume;
+            }
+        }
     }
 
     public void PlaySound(string soundName) 
