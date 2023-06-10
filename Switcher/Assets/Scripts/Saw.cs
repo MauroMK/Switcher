@@ -7,7 +7,7 @@ public class Saw : MonoBehaviour
     [SerializeField] private Transform[] waypoints;
     private int currentWP = 0;
 
-    [SerializeField] private float speed;
+    public float speed;
 
     private void FixedUpdate()
     {

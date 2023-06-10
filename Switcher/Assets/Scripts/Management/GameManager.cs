@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     public void LoadSpecificScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
     }
 
     public void LoadNextScene()
