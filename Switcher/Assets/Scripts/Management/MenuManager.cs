@@ -5,22 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public void LoadNextScene()
+    public void LoadSpecificScene(string lvlName)
     {
-        // Obtém o índice da cena atual
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        // Carrega a próxima cena
-        SceneManager.LoadScene(currentSceneIndex + 1);
-    }
-
-    public void GoToSettingsPanel()
-    {
-        
-    }
-
-    public void GoToMainMenu()
-    {
-
+        SceneManager.LoadScene(lvlName);
     }
 }
